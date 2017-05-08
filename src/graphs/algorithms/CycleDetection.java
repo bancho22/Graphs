@@ -8,6 +8,7 @@ package graphs.algorithms;
 import graphs.Graph;
 import graphs.Node;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 
@@ -31,8 +32,10 @@ public class CycleDetection {
 //            if(!marked[n]) dfs(graph, null);
 //        }
 
-        while(graph.getNodes().iterator().hasNext()){
-            Node n = graph.getNodes().iterator().next();
+        Iterator<Node> it = graph.getNodes().iterator();
+        
+        while(it.hasNext()){
+            Node n = it.next();
 //            if(!marked[n.getIndex()]) dfs(graph, null);
             System.out.println(n.getIndex());
         }

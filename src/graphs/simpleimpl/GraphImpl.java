@@ -7,6 +7,7 @@ package graphs.simpleimpl;
 
 import graphs.Graph;
 import graphs.Node;
+import java.util.Iterator;
 
 /**
  *
@@ -21,8 +22,9 @@ public class GraphImpl implements Graph
     {
         this.nodes = nodes;
         int size = 0;
-        while(nodes.iterator().hasNext()){
-            nodes.iterator().next();
+        Iterator<Node> it = nodes.iterator();
+        while(it.hasNext()){
+            Node next = it.next();
             size++;
         }
         this.size = size;
