@@ -5,6 +5,7 @@
  */
 package graphs.algorithms;
 
+import graphs.Edge;
 import graphs.Graph;
 import graphs.Node;
 import java.util.ArrayList;
@@ -28,16 +29,12 @@ public class CycleDetection {
         edgeTo = new Node[graph.getSize()];
         onStack = new boolean[graph.getSize()];
         
-//        for(int n = 0; n < graph.getSize(); n++){
-//            if(!marked[n]) dfs(graph, null);
-//        }
 
         Iterator<Node> it = graph.getNodes().iterator();
         
         while(it.hasNext()){
             Node n = it.next();
-//            if(!marked[n.getIndex()]) dfs(graph, null);
-            System.out.println(n.getIndex());
+            if(!marked[n.getIndex()]) dfs(graph, n);
         }
         
         return null;
@@ -45,7 +42,36 @@ public class CycleDetection {
     
     
     private void dfs(Graph graph, Node node){
-        
+//        System.out.println(node.getIndex());
+        onStack[node.getIndex()] = true;
+        marked[node.getIndex()] = true;
+        for (Edge e : node.getFromEdges()) {
+            Node neighbour = e.getEndNode();
+            if(this.hasCycle()){
+                 return;
+            }
+            else if(!marked[neighbour.getIndex()]){
+                edgeTo[neighbour.getIndex()] = node;
+                dfs(graph, neighbour);
+            }
+            else if(onStack[neighbour.getIndex()]){
+                cycle = new Stack<Node>();
+                for (Node x = node; x.getIndex() != neighbour.getIndex(); x = edgeTo[x.getIndex()]) {
+                    cycle.push(x);
+                }
+                cycle.push(neighbour);
+                cycle.push(node);
+            }
+        }
+        onStack[node.getIndex()] = false;
+    }
+    
+    public boolean hasCycle(){
+        return cycle != null;
+    }
+    
+    public Iterable<Node> cycle(){
+        return cycle;
     }
     
 }
