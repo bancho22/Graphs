@@ -15,10 +15,22 @@ import graphs.Node;
 public class GraphImpl implements Graph
 {
     private final Iterable<Node> nodes;
+    private final int size;
 
     public GraphImpl(Iterable<Node> nodes)
     {
         this.nodes = nodes;
+        int size = 0;
+        while(nodes.iterator().hasNext()){
+            nodes.iterator().next();
+            size++;
+        }
+        this.size = size;
+    }
+    
+    @Override
+    public int getSize(){
+        return size;
     }
     
     

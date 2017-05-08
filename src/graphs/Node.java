@@ -12,5 +12,6 @@ package graphs;
 public interface Node
 {
     public String getName();
+    public int getIndex();
     public Iterable<Edge> getFromEdges();
 }

@@ -12,5 +12,6 @@ package graphs;
 public interface Graph
 {
     public Iterable<Node> getNodes();
+    public int getSize();
     public Node findNode(String name);
 }

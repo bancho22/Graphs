@@ -30,7 +30,7 @@ public class GraphBuilderImpl implements GraphBuilder
     @Override
     public BuildNode createNode(String name)
     {
-        NodeImpl res = new NodeImpl(name);
+        NodeImpl res = new NodeImpl(name, nodes.size());
         nodes.add(res);
         return res;
     }

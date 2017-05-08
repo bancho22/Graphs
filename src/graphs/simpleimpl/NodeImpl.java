@@ -19,11 +19,19 @@ public class NodeImpl implements Node, BuildNode
 {
     private final String name;
     private final List<Edge> edges;
+    private final int index;
 
-    public NodeImpl(String name)
+    public NodeImpl(String name, int index)
     {
         this.name = name;
+        this.index = index;
         this.edges = new ArrayList<>();
+    }
+    
+    @Override
+    public int getIndex()
+    {
+        return index;
     }
     
     @Override
