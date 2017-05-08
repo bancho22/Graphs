@@ -34,7 +34,7 @@ public class TestIt
         gb.createEdge(c, c);
         gb.createEdge(c, e);
         gb.createEdge(e, d);
-
+        
         Graph g = gb.build();
         Iterable<Node> res = BreadthFirst.runBreadthFirst(g.findNode("A"));
 
@@ -43,7 +43,17 @@ public class TestIt
 //            System.out.println(n.getName());
         }
         
-        Iterable<Node> res1 = new CycleDetection().detectCycles(g);
-
+        Iterable<Node> cycle = new CycleDetection().findCycle(g);
+        if(cycle != null){
+            System.out.println("Cycle start");
+            for(Node n : cycle)
+            {
+                System.out.println(n.getName());
+            }
+            System.out.println("Cycle end");
+        }
+        else{
+            System.out.println("No cycles found");
+        }
     }
 }
